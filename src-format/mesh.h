@@ -84,7 +84,7 @@ namespace oomph
     /// Boundary_node_pt(b,n). Note that this is private to force
     /// the use of the add_boundary_node() function, which ensures
     /// that the reverse look-up schemes for the nodes are set up.
-    Vector<Vector<Node *>> Boundary_node_pt;
+    Vector<Vector<Node *> > Boundary_node_pt;
 
     /// Flag to indicate that the lookup schemes for elements that are adjacent
     /// to the boundaries has been set up.
@@ -92,32 +92,32 @@ namespace oomph
 
     /// \short Vector of Vector of pointers to elements on the boundaries:
     /// Boundary_element_pt(b,e)
-    Vector<Vector<FiniteElement *>> Boundary_element_pt;
+    Vector<Vector<FiniteElement *> > Boundary_element_pt;
 
     /// \short  For the e-th finite element on boundary b, this is the index of
     /// the face that lies along that boundary
-    Vector<Vector<int>> Face_index_at_boundary;
+    Vector<Vector<int> > Face_index_at_boundary;
 
 #ifdef OOMPH_HAS_MPI
 
     /// Map of vectors holding the pointers to the root halo elements
-    std::map<unsigned, Vector<GeneralisedElement *>> Root_halo_element_pt;
+    std::map<unsigned, Vector<GeneralisedElement *> > Root_halo_element_pt;
 
     /// Map of vectors holding the pointers to the root haloed elements
-    std::map<unsigned, Vector<GeneralisedElement *>> Root_haloed_element_pt;
+    std::map<unsigned, Vector<GeneralisedElement *> > Root_haloed_element_pt;
 
     /// Map of vectors holding the pointers to the halo nodes
-    std::map<unsigned, Vector<Node *>> Halo_node_pt;
+    std::map<unsigned, Vector<Node *> > Halo_node_pt;
 
     /// Map of vectors holding the pointers to the haloed nodes
-    std::map<unsigned, Vector<Node *>> Haloed_node_pt;
+    std::map<unsigned, Vector<Node *> > Haloed_node_pt;
 
     /// Map of vectors holding the pointers to the shared nodes.
     /// These are all the nodes that are on two "neighbouring" processes
     /// (the halo(ed) lookup scheme depends upon which processor is in charge
     /// - a node which is on 3 processors, for example, will not feature in
     /// the halo(ed) lookup scheme between the two lowest-numbered processors)
-    std::map<unsigned, Vector<Node *>> Shared_node_pt;
+    std::map<unsigned, Vector<Node *> > Shared_node_pt;
 
     /// Pointer to communicator -- set to NULL if mesh is not distributed
     OomphCommunicator *Comm_pt;
@@ -127,19 +127,20 @@ namespace oomph
     /// The storage is wiped and rebuilt every time the mesh is refined.
 
     /// Map of vectors holding the pointers to the external halo elements
-    std::map<unsigned, Vector<GeneralisedElement *>> External_halo_element_pt;
+    std::map<unsigned, Vector<GeneralisedElement *> > External_halo_element_pt;
 
     /// Map of vectors holding the pointers to the external haloed elements
-    std::map<unsigned, Vector<GeneralisedElement *>> External_haloed_element_pt;
+    std::map<unsigned, Vector<GeneralisedElement *> >
+      External_haloed_element_pt;
 
 
     // External halo(ed) nodes are on the external halo(ed) elements
 
     /// Map of vectors holding the pointers to the external halo nodes
-    std::map<unsigned, Vector<Node *>> External_halo_node_pt;
+    std::map<unsigned, Vector<Node *> > External_halo_node_pt;
 
     /// Map of vectors holding the pointers to the external haloed nodes
-    std::map<unsigned, Vector<Node *>> External_haloed_node_pt;
+    std::map<unsigned, Vector<Node *> > External_haloed_node_pt;
 
     /// bool to indicate whether to keep all elements in a mesh as halos or not
     bool Keep_all_elements_as_halos;
@@ -287,7 +288,7 @@ namespace oomph
     /// Virtual function to perform the reset boundary elements info rutines
     virtual void reset_boundary_element_info(
       Vector<unsigned> &ntmp_boundary_elements,
-      Vector<Vector<unsigned>> &ntmp_boundary_elements_in_region,
+      Vector<Vector<unsigned> > &ntmp_boundary_elements_in_region,
       Vector<FiniteElement *> &deleted_elements)
     {
       std::ostringstream error_stream;
@@ -1844,7 +1845,7 @@ namespace oomph
     unsigned nroot_halo_element()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              Root_halo_element_pt.begin();
            it != Root_halo_element_pt.end();
            it++)
@@ -1892,7 +1893,7 @@ namespace oomph
     unsigned nhalo_node()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              Halo_node_pt.begin();
            it != Halo_node_pt.end();
            it++)
@@ -1907,7 +1908,7 @@ namespace oomph
     unsigned nhalo_node(const unsigned &p)
     {
       // Memory saving version of: return Halo_node_pt[p].size();
-      std::map<unsigned, Vector<Node *>>::iterator it = Halo_node_pt.find(p);
+      std::map<unsigned, Vector<Node *> >::iterator it = Halo_node_pt.find(p);
       if (it == Halo_node_pt.end())
       {
         return 0;
@@ -1935,7 +1936,7 @@ namespace oomph
     unsigned nroot_haloed_element()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              Root_haloed_element_pt.begin();
            it != Root_haloed_element_pt.end();
            it++)
@@ -1950,7 +1951,7 @@ namespace oomph
     unsigned nroot_haloed_element(const unsigned &p)
     {
       // Memory saving version of: return Root_haloed_element_pt[p].size();
-      std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
         Root_haloed_element_pt.find(p);
       if (it == Root_haloed_element_pt.end())
       {
@@ -1965,7 +1966,7 @@ namespace oomph
     Vector<GeneralisedElement *> root_haloed_element_pt(const unsigned &p)
     {
       // Memory saving version of:  return Root_haloed_element_pt[p];
-      std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
         Root_haloed_element_pt.find(p);
       if (it == Root_haloed_element_pt.end())
       {
@@ -1999,7 +2000,7 @@ namespace oomph
     unsigned nhaloed_node()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              Haloed_node_pt.begin();
            it != Haloed_node_pt.end();
            it++)
@@ -2015,7 +2016,7 @@ namespace oomph
     unsigned nhaloed_node(const unsigned &p)
     {
       // Memory saving version of: return Haloed_node_pt[p].size();
-      std::map<unsigned, Vector<Node *>>::iterator it = Haloed_node_pt.find(p);
+      std::map<unsigned, Vector<Node *> >::iterator it = Haloed_node_pt.find(p);
       if (it == Haloed_node_pt.end())
       {
         return 0;
@@ -2072,7 +2073,7 @@ namespace oomph
     unsigned nshared_node()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              Shared_node_pt.begin();
            it != Shared_node_pt.end();
            it++)
@@ -2085,7 +2086,7 @@ namespace oomph
     /// \short Doc shared nodes
     void doc_shared_nodes()
     {
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              Shared_node_pt.begin();
            it != Shared_node_pt.end();
            it++)
@@ -2111,7 +2112,7 @@ namespace oomph
     unsigned nshared_node(const unsigned &p)
     {
       // Memory saving version of: return Shared_node_pt[p].size();
-      std::map<unsigned, Vector<Node *>>::iterator it = Shared_node_pt.find(p);
+      std::map<unsigned, Vector<Node *> >::iterator it = Shared_node_pt.find(p);
       if (it == Shared_node_pt.end())
       {
         return 0;
@@ -2172,7 +2173,7 @@ namespace oomph
     void output_external_halo_elements(std::ostream &outfile,
                                        const unsigned &n_plot = 5)
     {
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              External_halo_element_pt.begin();
            it != External_halo_element_pt.end();
            it++)
@@ -2204,7 +2205,7 @@ namespace oomph
     void output_external_haloed_elements(std::ostream &outfile,
                                          const unsigned &n_plot = 5)
     {
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              External_haloed_element_pt.begin();
            it != External_haloed_element_pt.end();
            it++)
@@ -2236,7 +2237,7 @@ namespace oomph
     unsigned nexternal_halo_element()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              External_halo_element_pt.begin();
            it != External_halo_element_pt.end();
            it++)
@@ -2251,7 +2252,7 @@ namespace oomph
     unsigned nexternal_halo_element(const unsigned &p)
     {
       // Memory saving version of: return External_halo_element_pt[p].size();
-      std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
         External_halo_element_pt.find(p);
       if (it == External_halo_element_pt.end())
       {
@@ -2281,7 +2282,7 @@ namespace oomph
     unsigned nexternal_haloed_element()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      for (std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
              External_haloed_element_pt.begin();
            it != External_haloed_element_pt.end();
            it++)
@@ -2296,7 +2297,7 @@ namespace oomph
     unsigned nexternal_haloed_element(const unsigned &p)
     {
       // Memory saving version of: return External_haloed_element_pt[p].size();
-      std::map<unsigned, Vector<GeneralisedElement *>>::iterator it =
+      std::map<unsigned, Vector<GeneralisedElement *> >::iterator it =
         External_haloed_element_pt.find(p);
       if (it == External_haloed_element_pt.end())
       {
@@ -2322,7 +2323,7 @@ namespace oomph
     unsigned nexternal_halo_node()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              External_halo_node_pt.begin();
            it != External_halo_node_pt.end();
            it++)
@@ -2338,7 +2339,7 @@ namespace oomph
     {
       unsigned n_total = nexternal_halo_node();
       external_halo_node_pt.reserve(n_total);
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              External_halo_node_pt.begin();
            it != External_halo_node_pt.end();
            it++)
@@ -2368,7 +2369,7 @@ namespace oomph
     unsigned nexternal_halo_node(const unsigned &p)
     {
       // Memory saving version of: return External_halo_node_pt[p].size();
-      std::map<unsigned, Vector<Node *>>::iterator it =
+      std::map<unsigned, Vector<Node *> >::iterator it =
         External_halo_node_pt.find(p);
       if (it == External_halo_node_pt.end())
       {
@@ -2397,7 +2398,7 @@ namespace oomph
     /// whose non-halo external counterpart is held on processor p. (read only)
     Vector<Node *> external_halo_node_pt(const unsigned &p)
     {
-      std::map<unsigned, Vector<Node *>>::iterator it =
+      std::map<unsigned, Vector<Node *> >::iterator it =
         External_halo_node_pt.find(p);
       if (it == External_halo_node_pt.end())
       {
@@ -2426,7 +2427,7 @@ namespace oomph
     unsigned nexternal_haloed_node()
     {
       unsigned n = 0;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              External_haloed_node_pt.begin();
            it != External_haloed_node_pt.end();
            it++)
@@ -2441,7 +2442,7 @@ namespace oomph
     unsigned nexternal_haloed_node(const unsigned &p)
     {
       // Memory saving version of: return External_haloed_node_pt[p].size();
-      std::map<unsigned, Vector<Node *>>::iterator it =
+      std::map<unsigned, Vector<Node *> >::iterator it =
         External_haloed_node_pt.find(p);
       if (it == External_haloed_node_pt.end())
       {
@@ -2465,7 +2466,7 @@ namespace oomph
     /// whose halo external counterpart is held on processor p. (read only)
     Vector<Node *> external_haloed_node_pt(const unsigned &p)
     {
-      std::map<unsigned, Vector<Node *>>::iterator it =
+      std::map<unsigned, Vector<Node *> >::iterator it =
         External_haloed_node_pt.find(p);
       if (it == External_haloed_node_pt.end())
       {
@@ -2489,7 +2490,7 @@ namespace oomph
     std::set<int> external_halo_proc()
     {
       std::set<int> procs;
-      for (std::map<unsigned, Vector<Node *>>::iterator it =
+      for (std::map<unsigned, Vector<Node *> >::iterator it =
              External_halo_node_pt.begin();
            it != External_halo_node_pt.end();
            it++)
@@ -2506,7 +2507,7 @@ namespace oomph
       const Vector<unsigned> &element_domain,
       const Vector<GeneralisedElement *> &backed_up_el_pt,
       const Vector<FiniteElement *> &backed_up_f_el_pt,
-      std::map<Data *, std::set<unsigned>> &processors_associated_with_data,
+      std::map<Data *, std::set<unsigned> > &processors_associated_with_data,
       const bool &overrule_keep_as_halo_element_status)
     {
       std::ostringstream error_stream;
