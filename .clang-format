@@ -34,7 +34,7 @@ PenaltyReturnTypeOnItsOwnLine: '99999999'
 PointerAlignment: Right
 SortIncludes: 'false'
 SpacesBeforeTrailingComments: '1'
-Standard: Cpp11
+Standard: Cpp03
 TabWidth: '2'
 
 ...
