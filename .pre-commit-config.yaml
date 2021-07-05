@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: clang-format
+        name: clang-format
+        description: Format files with clang-format.
+        entry: clang-format -i
+        language: system
+        files: src-format\/.+.(h|hpp|cc|cpp|tpp)$
+        args: ['-style=file']
