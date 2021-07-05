@@ -1,0 +1,30 @@
+name: test-clang-format
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: DoozyX/clang-format-lint-action@v0.12
+      with:
+        source: 'src-format'
+        exclude: ''
+        extensions: 'h,cc,tpp'
+        clangFormatVersion: 12
+        style: file
+        inplace: True
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_user_name: clang-format-bot
+        commit_message: 'Automated commit of clang-format CI changes.'
