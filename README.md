@@ -2,7 +2,7 @@
 
 ![clang-format workflow](https://github.com/PuneetMatharu/clang-format-ci-example/actions/workflows/clang-format.yml/badge.svg)
 
-A simple project that demonstrates how to use clang-format in a CI workflow.
+A simple project that demonstrates how to use `clang-format` in a CI workflow.
 
 ## CI workflow
 
