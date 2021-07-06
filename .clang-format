@@ -8,7 +8,9 @@ AllowAllConstructorInitializersOnNextLine: 'true'
 AllowAllParametersOfDeclarationOnNextLine: 'true'
 AllowShortBlocksOnASingleLine: 'false'
 AllowShortFunctionsOnASingleLine: Empty
-AllowShortLambdasOnASingleLine: Empty
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLambdasOnASingleLine: All
+AllowShortLoopsOnASingleLine: 'true'
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
 BinPackParameters: 'false'
@@ -23,7 +25,7 @@ ContinuationIndentWidth: '2'
 Cpp11BracedListStyle: 'true'
 DerivePointerAlignment: 'false'
 FixNamespaceComments: 'true'
-IndentPPDirectives: BeforeHash
+IndentPPDirectives: None
 IndentWidth: '2'
 IndentWrappedFunctionNames: 'false'
 KeepEmptyLinesAtTheStartOfBlocks: 'false'
@@ -34,7 +36,7 @@ PenaltyReturnTypeOnItsOwnLine: '99999999'
 PointerAlignment: Right
 SortIncludes: 'false'
 SpacesBeforeTrailingComments: '1'
-Standard: Cpp03
+Standard: Cpp11
 TabWidth: '2'
 
 ...
