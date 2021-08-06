@@ -1,5 +1,6 @@
 name: test-clang-format
 
+# TODO: Remove main branch at some point
 on:
   pull_request:
   push:
@@ -14,10 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    # Ignore cfortran.h, lapack_qz.h, superlu.c, superlu_dist.c
     - uses: DoozyX/clang-format-lint-action@v0.12
       with:
-        source: 'src-format'
-        exclude: ''
+        source: 'src'
+        exclude: 'src/generic/cfortran.h src/generic/lapack_qz.h src/generic/superlu.c src/generic/superlu_dist.c'
         extensions: 'h,cc,tpp'
         clangFormatVersion: 12
         style: file
