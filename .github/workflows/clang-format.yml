@@ -15,12 +15,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    # Ignore cfortran.h, lapack_qz.h, superlu.c, superlu_dist.c
-    - uses: DoozyX/clang-format-lint-action@v0.12
+    # Want to ignore cfortran.h, lapack_qz.h, superlu.c, superlu_dist.c
+    - uses: PuneetMatharu/clang-format-lint-action@v0.13
       with:
-        source: 'src'
-        exclude: 'src/generic/cfortran.h src/generic/lapack_qz.h src/generic/superlu.c src/generic/superlu_dist.c'
-        extensions: 'h,cc,tpp'
+        files: ^(src)\/(?!.*(cfortran|lapack_qz))(.+)\.(h|hpp|cc|cpp|tpp)$
         clangFormatVersion: 12
         style: file
         inplace: True
