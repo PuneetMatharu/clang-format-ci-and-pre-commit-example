@@ -1,4 +1,4 @@
-# clang-format-ci-example
+# clang-format-ci-and-pre-commit-example
 
 ![clang-format workflow](https://github.com/PuneetMatharu/clang-format-ci-example/actions/workflows/clang-format.yml/badge.svg)
 
